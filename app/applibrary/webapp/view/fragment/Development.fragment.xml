@@ -41,9 +41,22 @@
 				</MultiComboBox>
 				<Label text="{i18n>estimations}"/>
 				<Input value="{path: 'ViewModel>/AppObject/Estimations', type:'sap.ui.model.type.Integer'}" type="Number"/> 
-				<Text text ="{i18n>hours}"/>
+				<Text text ="{i18n>hours}">
+					<layoutData>
+						<l:GridData span="XL1 L1 M4 S6" />
+					</layoutData>
+				</Text>
 				<Label text="{i18n>git_link}"/>
 				<Input value="{ViewModel>/AppObject/GITLink}"/>
+				<Button icon="sap-icon://detail-view" press="onLoadTargetURL" 
+					enabled="{= ${ViewModel>/AppObject/GITLink} ? true : false}"> 
+					<layoutData>
+						<l:GridData span="XL1 L1 M4 S6" />
+					</layoutData>
+					<customData>
+						<core:CustomData value="{ViewModel>/AppObject/GITLink}"/>
+					</customData>
+				</Button>
 			</f:content>
 		</f:SimpleForm>
 	</VBox>

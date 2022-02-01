@@ -22,7 +22,22 @@
 					<core:Item key="{ViewModel>email}" text="{ViewModel>email}"/>
 				</MultiComboBox>
 				<Label text="{i18n>sow_link}"/>
-				<Input value="{ViewModel>/AppObject/SOWLink}"/>				
+				<Input value="{ViewModel>/AppObject/SOWLink}"/>	
+				<Button icon="sap-icon://detail-view" press="onLoadTargetURL" enabled="{= ${ViewModel>/AppObject/SOWLink} ? true : false}">
+					<layoutData>
+						<l:GridData span="XL1 L1 M4 S6" />
+					</layoutData>
+					<customData>
+						<core:CustomData value="{ViewModel>/AppObject/SOWLink}"/>
+					</customData>
+				</Button>
+				<!-- <Link text = "Click here"
+					target="_blank"
+					href="http://www.sap.com">
+					<layoutData>
+						<l:GridData span="XL1 L1 M4 S6" />
+					</layoutData>
+					</Link> -->				
 			</f:content>
 		</f:SimpleForm>
 	</VBox>

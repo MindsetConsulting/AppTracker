@@ -24,6 +24,14 @@
 				
 				<Label text="{i18n>demo_video}"/>
 				<Input value="{ViewModel>/AppObject/DemoVideo}"/>
+				<Button icon="sap-icon://detail-view" press="onLoadTargetURL" enabled="{= ${ViewModel>/AppObject/DemoVideo} ? true : false}">
+					<layoutData>
+						<l:GridData span="XL1 L1 M4 S6" />
+					</layoutData>
+					<customData>
+						<core:CustomData value="{ViewModel>/AppObject/DemoVideo}"/>
+					</customData>
+				</Button>
 				<Label text="{i18n>integrate_to_appLibrary}"/>
 				<Switch state="{ViewModel>/AppObject/IntegratetoAppLibrary}" customTextOn="Yes" customTextOff="No">
 					<layoutData>

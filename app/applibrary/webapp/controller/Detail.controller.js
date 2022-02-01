@@ -36,13 +36,19 @@ sap.ui.define([
             // this.getOwnerComponent().getModel().metadataLoaded().then(this._onMetadataLoaded.bind(this));
         },
 
-       
+       /**
+        * 
+        * @param {*} oEvent 
+        */
         _onObjectMatched: function (oEvent) {
             this.sObjectId =  oEvent.getParameter("arguments").objectId;
             // this.getModel("appView").setProperty("/layout", "TwoColumnsMidExpanded");
             var mainModel = this.getView().getModel("ViewModel");
             this.onLoadAppCatData();
         },
+        /**
+         * load selected category data
+         */
         onLoadAppCatData: function(){
             var mainModel = this.getView().getModel("ViewModel");
             $.ajax({
@@ -72,8 +78,7 @@ sap.ui.define([
          * @function
          * @param {string} sObjectPath path to the object to be bound to the view.
          * @private
-         */
-        
+         */        
         onEditPress : function(evt){
             var appid = evt.getSource().getBindingContext("ViewModel").getObject().id;
 			this.getView().getModel("appView").setProperty("/layout","OneColumn");
@@ -90,6 +95,10 @@ sap.ui.define([
             var oViewModelData = this.getView().getModel("ViewModel");
             oViewModelData.setProperty("/appDetailTabSelect","AppDetails");
 		},
+        /**
+         * Delete selected data
+         * @param {*} evt 
+         */
         onDeletePress : function(evt){
             var controller = this;
             var oModel = controller.getView().getModel("ViewModel");
@@ -147,6 +156,10 @@ sap.ui.define([
             controller.getView().addDependent(controller.deleteDetailDialog);
             controller.deleteDetailDialog.open();
         },
+        /**
+         * Create new app 
+         * @param {*} evt 
+         */
 		onCreatePress : function(evt){
             var controller = this;
 			var oViewModel = this.getView().getModel("ViewModel");

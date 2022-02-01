@@ -1,7 +1,9 @@
 sap.ui.define([
     "sap/ui/core/mvc/Controller",
-    "sap/ui/core/routing/History"
-], function (Controller, History) {
+    "sap/ui/core/routing/History",
+	"sap/m/MessageToast",
+	"sap/m/MessageBox"
+], function (Controller, History, MessageToast, MessageBox) {
     "use strict";
 
     return Controller.extend("com.mindset.applibrary.admin.AppTracker.controller.BaseController", {
@@ -60,10 +62,17 @@ sap.ui.define([
                 this.getRouter().navTo("list", {}, true);
             }
         },
+        /**
+         * Nav back to one step
+         */
         onNavDetailBack: function(){
             this.getView().getModel("appView").setProperty("/layout","OneColumn");
 			this.getRouter().navTo("list");
         },
+        /**
+         * Nav Back one step back
+         * @param {*} oData 
+         */
         onNavAppDetailBack: function(oData){
             var controller = this;
             // set the layout property of FCL control to show two columns
@@ -75,6 +84,10 @@ sap.ui.define([
                 objectId : controller.sCatId 
             });
         },
+        /**
+         * Calculate per 
+         * @param {*} data 
+         */
         onLoadPers: function(data){
             if(data && !data.length){
                 data = this.onNavBackData;
@@ -97,6 +110,9 @@ sap.ui.define([
                 });
             }
         },
+        /**
+         * Get Teams Data
+         */
         getTeamsDetails: function(){
             let controller = this;
             let oViewModel = controller.getView().getModel("ViewModel");
@@ -113,6 +129,10 @@ sap.ui.define([
                 }
             });
          },
+         /**
+          * Cacl no of apps
+          * @param {*} oData 
+          */
         onLoadCount: function(oData){
             if(oData && !oData.length){
                 oData = this.onNavBackData;
@@ -155,6 +175,22 @@ sap.ui.define([
                         });
                     }                    
                 });
+            }
+        },
+        /**
+         * Open selected Url
+         * @param {*} oEvent 
+         */
+        onLoadTargetURL: function(oEvent){
+            if(oEvent){
+                let sURL = oEvent.getSource().getCustomData()[0].getValue();
+                if(sURL){
+                    window.open(sURL,"_blank");
+                } else {
+                    MessageToast.show("Please add URl...!");
+                }
+            } else {
+                //TBD
             }
         }
     });

@@ -24,6 +24,10 @@ sap.ui.define([
 			controller.getRouter().getRoute("createedit").attachPatternMatched(controller._onObjectMatched, controller);
 			oViewModel = controller.getOwnerComponent().getModel("ViewModel");
 		},
+		/**
+		 *  Enable fields based on select 
+		 * @param {*} evt 
+		 */
 		onSelectRadio: function(evt){
 			  let bCheck = oViewModel.getData().AppObject ? oViewModel.getData().AppObject.DesignThinking : 1;
 			if(evt){
@@ -57,6 +61,10 @@ sap.ui.define([
 				oViewModel.updateBindings(true);
 			}
 		},
+		/**
+		 * 
+		 * @param {*} oEvent 
+		 */
 		onChangeMultiInputTech: function(oEvent){
 			if(oEvent){
 				var inputEmailValue = oEvent.getSource().getValue();
@@ -92,6 +100,10 @@ sap.ui.define([
 				oViewModel.updateBindings(true);
 			}
 		},
+		/**
+		 * 
+		 * @param {*} oEvent 
+		 */
 		onTokenUpdateTech: function (oEvent) {
 			if(oEvent){
 				var sTokenUpdateType = oEvent.getParameters().type,
@@ -173,6 +185,9 @@ sap.ui.define([
 			controller.onVisibilityCheck();
 			oModel.updateBindings(true);
 		},
+		/**
+		 * check visibility
+		 */
 		onVisibilityCheck: function(){
             // var oViewModel = this.getView().getModel("ViewModel");
 			oViewModel.setProperty("/visible_payload/AppName/valueState", "None");
@@ -204,6 +219,9 @@ sap.ui.define([
 				oViewModel.updateBindings(true);
 			}
         },
+		/**
+		 * update
+		 */
 		onAppNameUpdate: function(){
 			oViewModel.setProperty("/Level3", oViewModel.getProperty("/AppObject/AppName"));
 			oViewModel.updateBindings(false);
@@ -408,7 +426,7 @@ sap.ui.define([
 			}
 		},
 		/**
-		 * 
+		 * Check
 		 */
 		_onSuccess : function(){
 			var oModel = controller.getView().getModel("ViewModel");

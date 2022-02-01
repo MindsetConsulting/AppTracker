@@ -49,6 +49,9 @@ sap.ui.define([
                 controller.getRouter().getRoute("list").attachPatternMatched(controller._onMasterMatched, controller);
                 controller.getRouter().attachBypassed(controller.onBypassed, controller);
             },
+            /**
+             * Root match
+             */
             _onMasterMatched:  function() {
                 //Set the layout property of the FCL control to 'OneColumn'
                 controller.getModel("appView").setProperty("/layout", "OneColumn");
@@ -58,6 +61,10 @@ sap.ui.define([
                 controller.getTeamsDetails();
                 oViewModelData.updateBindings(true);
             },
+            /**
+             * 
+             * @returns 
+             */
             _createViewModel: function() {
                 return new JSONModel({
                     isFilterBarVisible: false,

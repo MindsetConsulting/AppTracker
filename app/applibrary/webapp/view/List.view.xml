@@ -48,7 +48,7 @@
 						minScreenWidth="Desktop"
 						demandPopin="true"
 						hAlign="Center">
-						<Label text="{i18n>count}"  design="Bold"/>
+						<Label text="# {i18n>count}"  design="Bold"/>
 					</Column>
 					<Column	hAlign="End" class="sapUiTinyMarginEnd" width="7em">
 						<Label text="{i18n>persentage}"  design="Bold"/>

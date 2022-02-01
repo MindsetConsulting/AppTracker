@@ -23,8 +23,24 @@
 					visible="{ViewModel>/designVisible}"/>
 				<Label text="{i18n>dt_artifacts_gdrive}"/>
 				<Input value="{ViewModel>/AppObject/DTArtifactsGdrive}" visible="{ViewModel>/designVisible}"/>
+				<Button icon="sap-icon://detail-view" press="onLoadTargetURL" enabled="{= ${ViewModel>/AppObject/DTArtifactsGdrive} ? true : false}">
+					<layoutData>
+						<l:GridData span="XL1 L1 M4 S6" />
+					</layoutData>
+					<customData>
+						<core:CustomData value="{ViewModel>/AppObject/DTArtifactsGdrive}"/>
+					</customData>
+				</Button>
 				<Label text="{i18n>prototype_link}"/>
 				<Input value="{ViewModel>/AppObject/PrototypeLink}" visible="{ViewModel>/designVisible}"/>
+				<Button icon="sap-icon://detail-view" press="onLoadTargetURL" enabled="{= ${ViewModel>/AppObject/PrototypeLink} ? true : false}">
+					<layoutData>
+						<l:GridData span="XL1 L1 M4 S6" />
+					</layoutData>
+					<customData>
+						<core:CustomData value="{ViewModel>/AppObject/PrototypeLink}"/>
+					</customData>
+				</Button>
 			</f:content>
 		</f:SimpleForm>
 	</VBox>
