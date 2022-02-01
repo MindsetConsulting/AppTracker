@@ -51,7 +51,7 @@ sap.ui.define([
             },
             _onMasterMatched:  function() {
                 //Set the layout property of the FCL control to 'OneColumn'
-                controller.getModel("appView").setProperty("/layout", "TwoColumnsMidExpanded");
+                controller.getModel("appView").setProperty("/layout", "OneColumn");
                 controller.getView().byId("list").removeSelections();
                 let oViewModelData = controller.getView().getModel("ViewModel");
                 controller.onLoadPers(oViewModelData.getData().AppCategories);
@@ -94,11 +94,16 @@ sap.ui.define([
             _showDetail: function (oItem) {
                 var bReplace = !Device.system.phone;
                 // set the layout property of FCL control to show two columns
-                controller.getView().getModel("appView").setProperty("/layout", "TwoColumnsMidExpanded");
+                controller.getView().getModel("appView").setProperty("/layout", "OneColumn");
+                let oViewModel = controller.getView().getModel("ViewModel");
+                    oViewModel.setProperty("/Level2", oItem.getBindingContext("ViewModel").getProperty("categoryname"));
                 controller.getRouter().navTo("object", {
                     objectId : oItem.getBindingContext("ViewModel").getProperty("cat_id")
                 }, bReplace);
             },
+            /**
+             * Open Category dialog
+             */
             showFragmentCatalog : function(){
                 if (!this._ApprovalNoteDialog) {
                     this._ApprovalNoteDialog = sap.ui.xmlfragment("com.mindset.applibrary.admin.AppTracker.view.fragment.CatalogDialog", this);
@@ -106,6 +111,9 @@ sap.ui.define([
                 }
                 this._ApprovalNoteDialog.open();
             },
+            /**
+             * Open teams dialog
+             */
             addFragmentTeams : function(){
                 if (!this._addFragmentTeams) {
                     this._addFragmentTeams = sap.ui.xmlfragment("com.mindset.applibrary.admin.AppTracker.view.fragment.AddTeamDialog", this);
@@ -113,6 +121,9 @@ sap.ui.define([
                 }
                 this._addFragmentTeams.open();
             },
+            /**
+             * Creating new category 
+             */
             onCreateNewOrder : function(){
                 var controller = this;
                 var mainModel = this.getView().getModel("ViewModel");
@@ -150,6 +161,9 @@ sap.ui.define([
                     data: JSON.stringify(oPayload)
                 });                
             },
+            /**
+             * Edit the selcted category data.
+             */
             onCreateEditOrder: function(){
                 var controller = this;
                 var mainModel = this.getView().getModel("ViewModel");
@@ -187,9 +201,15 @@ sap.ui.define([
                     data: JSON.stringify(oCatObj)
                 });     
             },
+            /**
+             * Cancle the Category dialog
+             */
             onCreateNewOrderCancel : function(){
                 controller._ApprovalNoteDialog.close();
             },
+            /**
+             * Creating new team member dialog.
+             */
             onCreateNewTeamOrder : function(){
                 var controller = this;
                 var mainModel = this.getView().getModel("ViewModel");
@@ -214,15 +234,24 @@ sap.ui.define([
                 });
                 
             },
+            /**
+             * Cancle the teams dialog
+             */
             onCreateNewTeamCancel : function(){
                 controller._addFragmentTeams.close();
             },
+            /**
+             * Cancle the edit dialog
+             */
             onCreateEditOrderCancel: function(){
                 var mode = "SingleSelectMaster";
                 controller.byId("list").setMode(mode);
                 controller.getView().byId("list").removeSelections();
                 controller.EditDialog.close();
             },
+            /**
+             * Load the Category data 
+             */
             onLoadCatData: function(){
                 let oViewModel = this.getView().getModel("ViewModel");
                 $.ajax({
@@ -294,6 +323,10 @@ sap.ui.define([
             onRefresh: function () {
                 controller._oList.getBinding("items").refresh();
             },
+            /**
+             * Enable edit and delete buttons
+             * @param {*} oEvent 
+             */
             onEnableButtons: function(oEvent){
                 var mode = "SingleSelect",
                 oViewModel = controller.getView().getModel("ViewModel");
@@ -301,96 +334,114 @@ sap.ui.define([
 			    controller.byId("list").setMode(mode);
                 oViewModel.setProperty("/listButtonVisible", false);
             },
+            /**
+             * Delete the selected category item
+             */
             onListItemDelete: function(){
                let oViewModel = controller.getView().getModel("ViewModel");
-               oViewModel.setProperty("/listButtonVisible", true);
+              
                let sSelectedKey = controller.byId("list").getSelectedItem(),
-                   oSelectedObj = sSelectedKey.getBindingContext("ViewModel").getObject();
-                //    oSelectedObj.delete = true;
-                //    $.ajax({
-                //     method: "PATCH",
-                //     url: "/Applibrary/AppCategories/" + oSelectedObj.cat_id,
-                //     contentType: "application/json",
-                //     async: true,
-                //     success: function(data){
-                //         controller.onLoadCatData();
-                //          var mode = "SingleSelectMaster";
-			    //             controller.byId("list").setMode(mode);
-                //             controller.getView().byId("list").removeSelections();
-                //     },
-                //     data: JSON.stringify(oSelectedObj),
-                //     error: function(err){
-                //         console.log("Error not deleted cloud");
-                //         oSelectedObj.delete = false;
-                //     }
-                // });
-                controller.deleteDialog = new sap.m.Dialog({
-                    title: "{i18n>delete}",
-                    type: "Message",
-                    content: [
-                        new sap.m.Label({
-                            text: "{i18n>delete_confirm}"
-                        })
-                    ],
-                    beginButton: new sap.m.Button({
-                        type: "Emphasized",
-                        text: "{i18n>ok}",
-                        press: function () {
+                   oSelectedObj = sSelectedKey ? sSelectedKey.getBindingContext("ViewModel").getObject() : null;
+                   if(sSelectedKey && oSelectedObj){
+                        oViewModel.setProperty("/listButtonVisible", true);
+                    //    oSelectedObj.delete = true;
+                    //    $.ajax({
+                    //     method: "PATCH",
+                    //     url: "/Applibrary/AppCategories/" + oSelectedObj.cat_id,
+                    //     contentType: "application/json",
+                    //     async: true,
+                    //     success: function(data){
+                    //         controller.onLoadCatData();
+                    //          var mode = "SingleSelectMaster";
+                    //             controller.byId("list").setMode(mode);
+                    //             controller.getView().byId("list").removeSelections();
+                    //     },
+                    //     data: JSON.stringify(oSelectedObj),
+                    //     error: function(err){
+                    //         console.log("Error not deleted cloud");
+                    //         oSelectedObj.delete = false;
+                    //     }
+                    // });
+                    controller.deleteDialog = new sap.m.Dialog({
+                        title: "{i18n>delete}",
+                        type: "Message",
+                        content: [
+                            new sap.m.Label({
+                                text: "{i18n>delete_confirm}"
+                            })
+                        ],
+                        beginButton: new sap.m.Button({
+                            type: "Emphasized",
+                            text: "{i18n>ok}",
+                            press: function () {
+                                controller.deleteDialog.close();
+                                oSelectedObj.delete = true;
+                                delete oSelectedObj.pers;
+                                delete oSelectedObj.count;
+                                delete oSelectedObj.total;
+                                delete oSelectedObj.sCategory_type;
+                                $.ajax({
+                                    method: "PATCH",
+                                    url: "/Applibrary/AppCategories/" + oSelectedObj.cat_id,
+                                    contentType: "application/json",
+                                    async: true,
+                                    success: function(data){
+                                        controller.onLoadCatData();
+                                            var mode = "SingleSelectMaster";
+                                            controller.byId("list").setMode(mode);
+                                            controller.getView().byId("list").removeSelections();
+                                    },
+                                    data: JSON.stringify(oSelectedObj),
+                                    error: function(err){
+                                        console.log("Error not deleted cloud");
+                                        oSelectedObj.delete = false;
+                                    }
+                                });									
+                            }
+                        }),
+                        endButton: new sap.m.Button({
+                            text: "{i18n>no}",
+                            press: function () {										
                             controller.deleteDialog.close();
-                            oSelectedObj.delete = true;
-                            delete oSelectedObj.pers;
-                            delete oSelectedObj.count;
-                            delete oSelectedObj.total;
-                            delete oSelectedObj.sCategory_type;
-                            $.ajax({
-                                method: "PATCH",
-                                url: "/Applibrary/AppCategories/" + oSelectedObj.cat_id,
-                                contentType: "application/json",
-                                async: true,
-                                success: function(data){
-                                    controller.onLoadCatData();
-                                        var mode = "SingleSelectMaster";
-                                        controller.byId("list").setMode(mode);
-                                        controller.getView().byId("list").removeSelections();
-                                },
-                                data: JSON.stringify(oSelectedObj),
-                                error: function(err){
-                                    console.log("Error not deleted cloud");
-                                    oSelectedObj.delete = false;
-                                }
-                            });									
+                            var mode = "SingleSelectMaster";
+                                controller.byId("list").setMode(mode);
+                                controller.getView().byId("list").removeSelections();
+                            }
+                        }),
+                        afterClose: function () {
+                            controller.deleteDialog.destroy();
                         }
-                    }),
-                    endButton: new sap.m.Button({
-                        text: "{i18n>no}",
-                        press: function () {										
-                           controller.deleteDialog.close();
-                           var mode = "SingleSelectMaster";
-                               controller.byId("list").setMode(mode);
-                               controller.getView().byId("list").removeSelections();
-                        }
-                    }),
-                    afterClose: function () {
-                        controller.deleteDialog.destroy();
-                    }
-                });
-                controller.getView().addDependent(controller.deleteDialog);
-                controller.deleteDialog.open();
+                    });
+                    controller.getView().addDependent(controller.deleteDialog);
+                    controller.deleteDialog.open();
+                } else {
+                    MessageToast.show("PLease select list item...!");
+                }
             },
+            /**
+             * Editing category data
+             */
             onListItemEdit: function(){
-                let oViewModel = controller.getView().getModel("ViewModel");
-                oViewModel.setProperty("/listButtonVisible", true);
+                let oViewModel = controller.getView().getModel("ViewModel");                
                 
                 let sSelectedKey = controller.byId("list").getSelectedItem(),
-                    oSelectedObj = sSelectedKey.getBindingContext("ViewModel").getObject();
-                    oViewModel.setProperty("/CatEditObj", oSelectedObj);
-               
-                if (!controller.EditDialog) {
-                    controller.EditDialog = sap.ui.xmlfragment("com.mindset.applibrary.admin.AppTracker.view.fragment.CatalogDialogEdit", controller);
-                    controller.getView().addDependent(controller.EditDialog);
+                    oSelectedObj = sSelectedKey ? sSelectedKey.getBindingContext("ViewModel").getObject() : null;
+                if(sSelectedKey && oSelectedObj){
+                        oViewModel.setProperty("/CatEditObj", oSelectedObj);
+                        oViewModel.setProperty("/listButtonVisible", true);
+                    if (!controller.EditDialog) {
+                        controller.EditDialog = sap.ui.xmlfragment("com.mindset.applibrary.admin.AppTracker.view.fragment.CatalogDialogEdit", controller);
+                        controller.getView().addDependent(controller.EditDialog);
+                    }
+                    controller.EditDialog.open();
+                } else {
+                    MessageToast.show("PLease select list item...!");
                 }
-                controller.EditDialog.open();
              },
+             /**
+              * Load teams members data.
+              * @param {*} oEvent 
+              */
              onLoadMSTData: function(oEvent){
                 // if (!controller.dMSDataDialog) {
                 //     controller.dMSDataDialog = sap.ui.xmlfragment("com.mindset.applibrary.admin.AppTracker.view.fragment.MindSetTeamsDialog", controller);
@@ -418,7 +469,9 @@ sap.ui.define([
                 });
                 controller.getTeamsDetails();
              },
-             
+             /**
+              * Decline the options.
+              */
              onDecline: function(){
                 let oViewModel = controller.getView().getModel("ViewModel");
                 var mode = "SingleSelectMaster";

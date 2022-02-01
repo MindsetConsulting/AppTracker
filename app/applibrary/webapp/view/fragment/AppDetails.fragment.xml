@@ -5,7 +5,7 @@
 			columnsL="1" columnsM="1" singleContainerFullSize="false">
 			<f:content>
 				<Label text="{i18n>appname}" required="{ViewModel>/visible_payload/AppName/required}"/>
-				<Input value="{ViewModel>/AppObject/AppName}" valueState="{ViewModel>/visible_payload/AppName/valueState}"/>
+				<Input value="{ViewModel>/AppObject/AppName}" valueState="{ViewModel>/visible_payload/AppName/valueState}" change="onAppNameUpdate"/>
 				<Label text="{i18n>description}"/>
 				<TextArea rows="3" value="{ViewModel>/AppObject/Description}"></TextArea>
 				<Label text="{i18n>industry}" required="{ViewModel>/visible_payload/Industry/required}"/>

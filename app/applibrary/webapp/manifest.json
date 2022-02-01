@@ -85,13 +85,12 @@
         {
           "pattern": "",
           "name": "list",
-          "target": ["list", "detailObjectNotFound"]
+          "target": ["list"]
         },
         {
           "pattern": "{objectId}",
           "name": "object",
           "target": [
-            "list",
             "object"
           ]
         },
@@ -110,8 +109,7 @@
         "object": {
           "viewName": "Detail",
           "viewId": "detail",
-          "viewLevel": 1,
-          "controlAggregation": "midColumnPages"
+          "viewLevel": 1
         },
         "createedit": {
 					"viewLevel": 3,
@@ -120,8 +118,7 @@
 				},
         "detailObjectNotFound": {
           "viewName": "DetailObjectNotFound",
-          "viewId": "detailObjectNotFound",
-          "controlAggregation": "midColumnPages"
+          "viewId": "detailObjectNotFound"
         },
         "notFound": {
           "viewName": "NotFound",

@@ -204,6 +204,10 @@ sap.ui.define([
 				oViewModel.updateBindings(true);
 			}
         },
+		onAppNameUpdate: function(){
+			oViewModel.setProperty("/Level3", oViewModel.getProperty("/AppObject/AppName"));
+			oViewModel.updateBindings(false);
+		},
 		/**
 		 * On press next button.
 		 */
@@ -251,6 +255,7 @@ sap.ui.define([
 						oViewModel.setProperty("/AppObject/DesignThinking", 1);
 						
 						controller.onSelectRadio();
+						controller.onAppNameUpdate();
 						oViewModel.updateBindings(false);
 					},
 					error: function(err){
@@ -321,6 +326,7 @@ sap.ui.define([
 						// oViewModel.setProperty("/buttonChecks/next", false);
 						// oViewModel.setProperty("/buttonChecks/save", true);
 						oViewModel.updateBindings(false);
+						controller.onAppNameUpdate();
 						// MessageBox.show("Data is Saved Successfully ...!", {
 						// 	icon: MessageBox.Icon.SUCCESS,
 						// 	title: "Success",

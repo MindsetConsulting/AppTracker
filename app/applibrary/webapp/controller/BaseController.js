@@ -67,7 +67,8 @@ sap.ui.define([
         onNavAppDetailBack: function(oData){
             var controller = this;
             // set the layout property of FCL control to show two columns
-            controller.getView().getModel("appView").setProperty("/layout", "TwoColumnsMidExpanded");
+            // controller.getView().getModel("appView").setProperty("/layout", "TwoColumnsMidExpanded");
+            controller.getView().getModel("appView").setProperty("/layout", "OneColumn");
             controller.onLoadCount(oData);
             controller.onLoadPers(oData);
             controller.getRouter().navTo("object", {

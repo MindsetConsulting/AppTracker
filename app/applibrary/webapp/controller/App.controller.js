@@ -15,7 +15,7 @@ sap.ui.define([
                 // iOriginalBusyDelay = this.getView().getBusyIndicatorDelay();
 
             oView = new JSONModel({
-                layout : "TwoColumnsBeginExpanded",
+                layout : "OneColumn",
                 previousLayout : "",
                 actionButtonsInfo : {
                     midColumn : {
