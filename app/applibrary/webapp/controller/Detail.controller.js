@@ -80,6 +80,8 @@ sap.ui.define([
 
              //TBD
              this.getTeamsDetails();
+             let oViewModel = this.getView().getModel("ViewModel");
+                 oViewModel.setProperty("/Level3", evt.getSource().getBindingContext("ViewModel").getObject().AppName);
 
 			this.getRouter().navTo("createedit", {
 				catId :this.sObjectId,
@@ -153,7 +155,7 @@ sap.ui.define([
             oViewModel.setProperty("/AppObject", {});   
             //TBD
             controller.getTeamsDetails();
-
+            oViewModel.setProperty("/Level3", "New App Name");
             controller.getView().getModel("appView").setProperty("/layout","OneColumn");
             controller.getRouter().navTo("createedit", {
                 catId :controller.sObjectId,

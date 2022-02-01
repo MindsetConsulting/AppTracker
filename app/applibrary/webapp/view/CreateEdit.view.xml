@@ -1,7 +1,16 @@
 <mvc:View controllerName="com.mindset.applibrary.admin.AppTracker.controller.CreateEdit" xmlns="sap.m" xmlns:semantic="sap.f.semantic"
 	xmlns:mvc="sap.ui.core.mvc" xmlns:footerbar="sap.ushell.ui.footerbar" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form"
 	xmlns:core="sap.ui.core">
-	<Page title="{i18n>appDesc}" titleAlignment="Center" titleLevel="H1" showNavButton="true" navButtonPress="onNavAppDetailBack">
+	<Page title="{i18n>appDesc}" titleAlignment="Center" titleLevel="H1" showNavButton="false" navButtonPress="onNavAppDetailBack">
+		<subHeader>
+			<OverflowToolbar>
+				<Breadcrumbs>
+					<Link press="onNavDetailBack" text="{ViewModel>/Level1}"/>
+					<Link press="onNavAppDetailBack" text="{ViewModel>/Level2}"/>
+					<Link text="{ViewModel>/Level3}"/>
+				</Breadcrumbs >
+			</OverflowToolbar>
+		</subHeader>
 		<content>
 			<IconTabBar id="idIconTabBar" select=".onFilterSelect" class="sapUiResponsiveContentPadding" selectedKey="{ViewModel>/appDetailTabSelect}">
 				<items>

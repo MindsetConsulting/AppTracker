@@ -9,6 +9,7 @@
 		"last_name": null,
 		"type": null
     },
+	"Level1" : "Categories",
     "tableArray" : [],
 	"AppObject" : {
 		"appClients":[]
