@@ -11,7 +11,7 @@
 			</headerToolbar>
 
 			<columns>
-				<Column width="15em">
+				<Column width="12em">
 					<Text text="{i18n>client_name}"/>
 				</Column>
 				<Column minScreenWidth="Tablet" demandPopin="true">
@@ -69,7 +69,15 @@
 								<core:Item text="01" key="1"/>
 							</items>
 						</Select>
-						<Input value="{ViewModel>Feedback}" enabled="{= ${ViewModel>saveFlage} ? false : true}"/>
+						<!-- <HBox> -->
+						<!-- <Text text="{ViewModel>Feedback}" enabled="{= ${ViewModel>saveFlage} ? false : true}" 
+							visible="{= ${ViewModel>saveFlage} ? true : false}" wrapping="false"
+							tooltip="{ViewModel>Feedback}"/>
+						<TextArea rows="5" value="{ViewModel>Feedback}" enabled="{= ${ViewModel>saveFlage} ? false : true}"
+							visible="{= ${ViewModel>saveFlage} ? false : true}"
+							tooltip="{ViewModel>Feedback}"/> -->
+						<!-- </HBox> -->
+						<Button text="{i18n>feedback}" press="onCommentPress"/>
 						<HBox> 
 							<Button icon="sap-icon://save" press="onUpdateClients" visible ="{= ${ViewModel>saveFlage} ? false : true}"/>
 							<Button icon="sap-icon://edit" press="onEditClients" visible ="{= ${ViewModel>saveFlage} ? true : false}"/>

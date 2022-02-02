@@ -56,7 +56,7 @@ sap.ui.define([
                 //Set the layout property of the FCL control to 'OneColumn'
                 controller.getModel("appView").setProperty("/layout", "OneColumn");
                 controller.getView().byId("list").removeSelections();
-                let oViewModelData = controller.getView().getModel("ViewModel");
+                var oViewModelData = controller.getView().getModel("ViewModel");
                 controller.onLoadPers(oViewModelData.getData().AppCategories);
                 controller.getTeamsDetails();
                 oViewModelData.updateBindings(true);
@@ -102,7 +102,7 @@ sap.ui.define([
                 var bReplace = !Device.system.phone;
                 // set the layout property of FCL control to show two columns
                 controller.getView().getModel("appView").setProperty("/layout", "OneColumn");
-                let oViewModel = controller.getView().getModel("ViewModel");
+                var oViewModel = controller.getView().getModel("ViewModel");
                     oViewModel.setProperty("/Level2", oItem.getBindingContext("ViewModel").getProperty("categoryname"));
                 controller.getRouter().navTo("object", {
                     objectId : oItem.getBindingContext("ViewModel").getProperty("cat_id")
@@ -260,7 +260,7 @@ sap.ui.define([
              * Load the Category data 
              */
             onLoadCatData: function(){
-                let oViewModel = this.getView().getModel("ViewModel");
+                var oViewModel = this.getView().getModel("ViewModel");
                 $.ajax({
                     method: "GET",
                     url: "/Applibrary/AppCategories",
@@ -345,9 +345,9 @@ sap.ui.define([
              * Delete the selected category item
              */
             onListItemDelete: function(){
-               let oViewModel = controller.getView().getModel("ViewModel");
+               var oViewModel = controller.getView().getModel("ViewModel");
               
-               let sSelectedKey = controller.byId("list").getSelectedItem(),
+               var sSelectedKey = controller.byId("list").getSelectedItem(),
                    oSelectedObj = sSelectedKey ? sSelectedKey.getBindingContext("ViewModel").getObject() : null;
                    if(sSelectedKey && oSelectedObj){
                         oViewModel.setProperty("/listButtonVisible", true);
@@ -429,9 +429,9 @@ sap.ui.define([
              * Editing category data
              */
             onListItemEdit: function(){
-                let oViewModel = controller.getView().getModel("ViewModel");                
+                var oViewModel = controller.getView().getModel("ViewModel");                
                 
-                let sSelectedKey = controller.byId("list").getSelectedItem(),
+                var sSelectedKey = controller.byId("list").getSelectedItem(),
                     oSelectedObj = sSelectedKey ? sSelectedKey.getBindingContext("ViewModel").getObject() : null;
                 if(sSelectedKey && oSelectedObj){
                         oViewModel.setProperty("/CatEditObj", oSelectedObj);
@@ -455,7 +455,7 @@ sap.ui.define([
                 //     controller.getView().addDependent(controller.dMSDataDialog);
                 // }
                 // controller.dMSDataDialog.open();
-                let oViewModel = controller.getView().getModel("ViewModel");
+                var oViewModel = controller.getView().getModel("ViewModel");
                 var oButton = oEvent.getSource(),
 				oView = controller.getView();
                 oViewModel.setProperty("/teamObj/email");
@@ -480,7 +480,7 @@ sap.ui.define([
               * Decline the options.
               */
              onDecline: function(){
-                let oViewModel = controller.getView().getModel("ViewModel");
+                var oViewModel = controller.getView().getModel("ViewModel");
                 var mode = "SingleSelectMaster";
 			    controller.byId("list").setMode(mode);
                 oViewModel.setProperty("/listButtonVisible", true);

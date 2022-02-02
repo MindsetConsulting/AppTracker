@@ -22,8 +22,11 @@
 				<DatePicker value="{ViewModel>/AppObject/DTDate}" valueFormat = "yyyy-MM-dd" displayFormat = "MM/dd/YYYY" 
 					visible="{ViewModel>/designVisible}"/>
 				<Label text="{i18n>dt_artifacts_gdrive}"/>
-				<Input value="{ViewModel>/AppObject/DTArtifactsGdrive}" visible="{ViewModel>/designVisible}"/>
-				<Button icon="sap-icon://detail-view" press="onLoadTargetURL" enabled="{= ${ViewModel>/AppObject/DTArtifactsGdrive} ? true : false}">
+				<Input value="{ViewModel>/AppObject/DTArtifactsGdrive}"
+					visible="{ViewModel>/designVisible}" tooltip="{ViewModel>/AppObject/DTArtifactsGdrive}"/>
+				<Button icon="sap-icon://detail-view" press="onLoadTargetURL" visible="{ViewModel>/designVisible}"
+					enabled="{= ${ViewModel>/AppObject/DTArtifactsGdrive} ? true : false}"
+					tooltip="{ViewModel>/AppObject/DTArtifactsGdrive}">
 					<layoutData>
 						<l:GridData span="XL1 L1 M4 S6" />
 					</layoutData>
@@ -32,8 +35,11 @@
 					</customData>
 				</Button>
 				<Label text="{i18n>prototype_link}"/>
-				<Input value="{ViewModel>/AppObject/PrototypeLink}" visible="{ViewModel>/designVisible}"/>
-				<Button icon="sap-icon://detail-view" press="onLoadTargetURL" enabled="{= ${ViewModel>/AppObject/PrototypeLink} ? true : false}">
+				<Input value="{ViewModel>/AppObject/PrototypeLink}" visible="{ViewModel>/designVisible}"
+					tooltip="{ViewModel>/AppObject/PrototypeLink}"/>
+				<Button icon="sap-icon://detail-view" press="onLoadTargetURL" visible="{ViewModel>/designVisible}"
+					 enabled="{= ${ViewModel>/AppObject/PrototypeLink} ? true : false}"
+					 tooltip="{ViewModel>/AppObject/PrototypeLink}">
 					<layoutData>
 						<l:GridData span="XL1 L1 M4 S6" />
 					</layoutData>

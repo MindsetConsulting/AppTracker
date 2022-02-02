@@ -23,8 +23,9 @@
 				</Switch>
 				
 				<Label text="{i18n>demo_video}"/>
-				<Input value="{ViewModel>/AppObject/DemoVideo}"/>
-				<Button icon="sap-icon://detail-view" press="onLoadTargetURL" enabled="{= ${ViewModel>/AppObject/DemoVideo} ? true : false}">
+				<Input value="{ViewModel>/AppObject/DemoVideo}" tooltip="{ViewModel>/AppObject/DemoVideo}"/>
+				<Button icon="sap-icon://detail-view" press="onLoadTargetURL"
+					enabled="{= ${ViewModel>/AppObject/DemoVideo} ? true : false}" tooltip="{ViewModel>/AppObject/DemoVideo}">
 					<layoutData>
 						<l:GridData span="XL1 L1 M4 S6" />
 					</layoutData>

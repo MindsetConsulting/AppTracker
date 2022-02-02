@@ -29,7 +29,7 @@ sap.ui.define([
 		 * @param {*} evt 
 		 */
 		onSelectRadio: function(evt){
-			  let bCheck = oViewModel.getData().AppObject ? oViewModel.getData().AppObject.DesignThinking : 1;
+			  var bCheck = oViewModel.getData().AppObject ? oViewModel.getData().AppObject.DesignThinking : 1;
 			if(evt){
 				var sKey = evt.getSource().getSelectedButton().getText();
 				if(sKey === "No"){
@@ -230,11 +230,11 @@ sap.ui.define([
 		 * On press next button.
 		 */
 		onNextPress: function(){
-			let oViewModel = this.getView().getModel("ViewModel"),
+			var oViewModel = this.getView().getModel("ViewModel"),
 			    object = oViewModel.getProperty("/AppObject");
 
 		    // Required fileds check		
-            let oAppDetails = oViewModel.getProperty("/AppObject"),
+            var oAppDetails = oViewModel.getProperty("/AppObject"),
 			    bVisibilityCheck = true;
 				if(!oAppDetails.AppName){
 					oViewModel.setProperty("/visible_payload/AppName/valueState", "Error");
@@ -309,7 +309,7 @@ sap.ui.define([
 			// 	batchGroupId: "IDShipPlantConfigSetBatch",
 			// 	success: controller._onSuccess.bind(controller)
 			// });
-			let checkClientFlg = false;
+			var checkClientFlg = false;
 			if(oAppObject && oAppObject.appClients){
 				oAppObject.appClients.forEach(element => {
 					if(!element.saveFlage){
@@ -329,7 +329,7 @@ sap.ui.define([
 				});
 			} else{
 				// TBD
-				let appClientsCopy = jQuery.extend(true, [], oAppObject.appClients);
+				var appClientsCopy = jQuery.extend(true, [], oAppObject.appClients);
 				delete oAppObject.appClients;
 
 				$.ajax({
@@ -448,7 +448,7 @@ sap.ui.define([
 			var appIdClient = oViewModel.getProperty("/AppObject");
 			// var oDataModel = this.getView().getModel();
 			var aArray = oViewModel.getProperty("/AppObject/appClients") ? oViewModel.getProperty("/AppObject/appClients") : [];
-			let addclientflage = false;
+			var addclientflage = false;
 			if(aArray){
 				aArray.forEach(element => {
 					if(element && !element.ClientName){

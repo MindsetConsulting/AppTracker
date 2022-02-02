@@ -114,8 +114,8 @@ sap.ui.define([
          * Get Teams Data
          */
         getTeamsDetails: function(){
-            let controller = this;
-            let oViewModel = controller.getView().getModel("ViewModel");
+            var controller = this;
+            var oViewModel = controller.getView().getModel("ViewModel");
             $.ajax({
                 method: "GET",
                 url: "/ApplibraryTeams/TeamsData",
@@ -138,7 +138,7 @@ sap.ui.define([
                 oData = this.onNavBackData;
             }
             if(oData && oData.length > 0){
-                let oCat = {};
+                var oCat = {};
                    
                 oData.forEach(element => {
                     if(element && element.delete !== true){
@@ -154,7 +154,7 @@ sap.ui.define([
                                 // });
                                 if(oCat.cat_id === data.cat_id){
                                     oCat.pers = [];
-                                    let aArr = [];
+                                    var aArr = [];
                                         data.cat_details.forEach(element => {
                                             if(element.delete !== true){
                                                 aArr.push(element);
@@ -183,7 +183,7 @@ sap.ui.define([
          */
         onLoadTargetURL: function(oEvent){
             if(oEvent){
-                let sURL = oEvent.getSource().getCustomData()[0].getValue();
+                var sURL = oEvent.getSource().getCustomData()[0].getValue();
                 if(sURL){
                     window.open(sURL,"_blank");
                 } else {
@@ -192,6 +192,37 @@ sap.ui.define([
             } else {
                 //TBD
             }
+        },
+        /**
+         * 
+         * @param {*} oEvent 
+         */
+        onCommentPress: function(oEvent){
+            var controller = this;
+            if(oEvent) {
+                controller.text = oEvent.getSource().getText();
+                var oViewModel = controller.getView().getModel("ViewModel");
+                var oSelectedBind = oEvent.getSource().getBindingContext("ViewModel");
+                // controller.sSelectedFeedBackPath = oSelectedBind.getPath();
+                // oViewModel.setProperty("/feedback_comment", oSelectedBind.getObject().Feedback);
+            }
+			if (controller._comment) {
+				controller.getView().removeDependent(controller._comment);
+			}
+			if (!controller._comment) {
+				controller._comment = sap.ui.xmlfragment("com.mindset.applibrary.admin.AppTracker.view.fragment.FeedbackDialog", controller);
+				controller.getView().addDependent(controller._comment);
+			}
+            controller._comment.setBindingContext(oSelectedBind);
+            controller._comment.setModel(oViewModel);
+            controller._comment.open();
+        },
+        /**
+         * Close the feed back dialog
+         */
+        onCancelComment: function(){
+            var controller = this;
+            controller._comment.close();
         }
     });
 

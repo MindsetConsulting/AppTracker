@@ -58,7 +58,7 @@ sap.ui.define([
                 async: true,
                 success: function(data){
                     data.cat_details.forEach(element => {
-                        let aArray = [];
+                        var aArray = [];
                         element.sTechTags = null;
                         element.TechTags.forEach(iteam => {
                             aArray.push(iteam.Value);
@@ -85,7 +85,7 @@ sap.ui.define([
 
              //TBD
              this.getTeamsDetails();
-             let oViewModel = this.getView().getModel("ViewModel");
+             var oViewModel = this.getView().getModel("ViewModel");
                  oViewModel.setProperty("/Level3", evt.getSource().getBindingContext("ViewModel").getObject().AppName);
 
 			this.getRouter().navTo("createedit", {

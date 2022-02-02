@@ -47,9 +47,10 @@
 					</layoutData>
 				</Text>
 				<Label text="{i18n>git_link}"/>
-				<Input value="{ViewModel>/AppObject/GITLink}"/>
+				<Input value="{ViewModel>/AppObject/GITLink}" tooltip="{ViewModel>/AppObject/GITLink}"/>
 				<Button icon="sap-icon://detail-view" press="onLoadTargetURL" 
-					enabled="{= ${ViewModel>/AppObject/GITLink} ? true : false}"> 
+					enabled="{= ${ViewModel>/AppObject/GITLink} ? true : false}"
+					tooltip="{ViewModel>/AppObject/GITLink}"> 
 					<layoutData>
 						<l:GridData span="XL1 L1 M4 S6" />
 					</layoutData>
