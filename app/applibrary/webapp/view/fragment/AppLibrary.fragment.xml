@@ -23,8 +23,12 @@
 				</Switch>
 				
 				<Label text="{i18n>demo_video}"/>
-				<Input value="{ViewModel>/AppObject/DemoVideo}" tooltip="{ViewModel>/AppObject/DemoVideo}"/>
-				<Button icon="sap-icon://detail-view" press="onLoadTargetURL"
+				<Input value="{ViewModel>/AppObject/DemoVideo}" tooltip="{ViewModel>/AppObject/DemoVideo}">
+					<layoutData>
+						<l:GridData span="XL2 L4 M5 S7"/>
+					</layoutData>
+				</Input>
+				<!-- <Button icon="sap-icon://detail-view" press="onLoadTargetURL"
 					enabled="{= ${ViewModel>/AppObject/DemoVideo} ? true : false}" tooltip="{ViewModel>/AppObject/DemoVideo}">
 					<layoutData>
 						<l:GridData span="XL1 L1 M4 S6" />
@@ -32,7 +36,19 @@
 					<customData>
 						<core:CustomData value="{ViewModel>/AppObject/DemoVideo}"/>
 					</customData>
-				</Button>
+				</Button> -->
+				<core:Icon
+					src="sap-icon://detail-view"
+					class="size3 sapUiTinyMarginTop"
+					color="#8875E7" press="onLoadTargetURL" visible="{ViewModel>/designVisible}"
+					tooltip="{ViewModel>/AppObject/DemoVideo}">
+					<core:layoutData>
+						<FlexItemData growFactor="1" />
+					</core:layoutData>
+					<core:customData>
+						<core:CustomData value="{ViewModel>/AppObject/DemoVideo}"/>
+					</core:customData>
+				</core:Icon>
 				<Label text="{i18n>integrate_to_appLibrary}"/>
 				<Switch state="{ViewModel>/AppObject/IntegratetoAppLibrary}" customTextOn="Yes" customTextOff="No">
 					<layoutData>

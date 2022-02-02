@@ -27,13 +27,13 @@
 						</content>
 					</IconTabFilter>
 					<IconTabSeparator icon="sap-icon://open-command-field"/>
-					<IconTabFilter enabled="{ViewModel>/buttonChecks/save}" icon="sap-icon://idea-wall" iconColor="Positive" text="{i18n>desginthinking}" key="DesginThinking">
+					<IconTabFilter enabled="{ViewModel>/buttonChecks/save}" icon="sap-icon://idea-wall" iconColor="Critical" text="{i18n>desginthinking}" key="DesginThinking">
 						<content>
 							<core:Fragment fragmentName="com.mindset.applibrary.admin.AppTracker.view.fragment.DesginThinking" type="XML"/>
 						</content>
 					</IconTabFilter>
 					<IconTabSeparator icon="sap-icon://open-command-field"/>
-					<IconTabFilter enabled="{ViewModel>/buttonChecks/save}" icon="sap-icon://developer-settings" iconColor="Critical" text="{i18n>development}"
+					<IconTabFilter enabled="{ViewModel>/buttonChecks/save}" icon="sap-icon://developer-settings" iconColor="Positive" text="{i18n>development}"
 						key="Development">
 						<content>
 							<core:Fragment fragmentName="com.mindset.applibrary.admin.AppTracker.view.fragment.Development" type="XML"/>
@@ -47,10 +47,16 @@
 						</content>
 					</IconTabFilter>
 					<IconTabSeparator icon="sap-icon://open-command-field"/>
-					<IconTabFilter enabled="{ViewModel>/buttonChecks/save}" icon="sap-icon://business-by-design" iconColor="Default"  text="{i18n>applibrary}"
+					<IconTabFilter enabled="{ViewModel>/buttonChecks/save}" icon="sap-icon://business-by-design" iconColor="Critical"  text="{i18n>applibrary}"
 						key="AppLibrary">
 							<content>
 							<core:Fragment fragmentName="com.mindset.applibrary.admin.AppTracker.view.fragment.AppLibrary" type="XML"/>
+						</content>
+					</IconTabFilter>
+					<IconTabFilter enabled="{ViewModel>/buttonChecks/save}" icon="sap-icon://key-user-settings" iconColor="Default"  text="{i18n>timeline}"
+						key="Timeline">
+							<content>
+							<core:Fragment fragmentName="com.mindset.applibrary.admin.AppTracker.view.fragment.Timeline" type="XML"/>
 						</content>
 					</IconTabFilter>		
 				</items>

@@ -47,8 +47,12 @@
 					</layoutData>
 				</Text>
 				<Label text="{i18n>git_link}"/>
-				<Input value="{ViewModel>/AppObject/GITLink}" tooltip="{ViewModel>/AppObject/GITLink}"/>
-				<Button icon="sap-icon://detail-view" press="onLoadTargetURL" 
+				<Input value="{ViewModel>/AppObject/GITLink}" tooltip="{ViewModel>/AppObject/GITLink}">
+					<layoutData>
+						<l:GridData span="XL2 L4 M5 S7"/>
+					</layoutData>
+				</Input>
+				<!-- <Button icon="sap-icon://detail-view" press="onLoadTargetURL" 
 					enabled="{= ${ViewModel>/AppObject/GITLink} ? true : false}"
 					tooltip="{ViewModel>/AppObject/GITLink}"> 
 					<layoutData>
@@ -57,7 +61,19 @@
 					<customData>
 						<core:CustomData value="{ViewModel>/AppObject/GITLink}"/>
 					</customData>
-				</Button>
+				</Button> -->
+				<core:Icon
+					src="sap-icon://detail-view"
+					class="size3 sapUiTinyMarginTop"
+					color="#8875E7" press="onLoadTargetURL" visible="{ViewModel>/designVisible}"
+					tooltip="{ViewModel>/AppObject/GITLink}">
+					<core:layoutData>
+						<FlexItemData growFactor="1" />
+					</core:layoutData>
+					<core:customData>
+						<core:CustomData value="{ViewModel>/AppObject/GITLink}"/>
+					</core:customData>
+				</core:Icon>
 			</f:content>
 		</f:SimpleForm>
 	</VBox>

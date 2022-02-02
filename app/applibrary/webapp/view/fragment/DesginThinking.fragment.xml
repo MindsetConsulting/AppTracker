@@ -23,21 +23,41 @@
 					visible="{ViewModel>/designVisible}"/>
 				<Label text="{i18n>dt_artifacts_gdrive}"/>
 				<Input value="{ViewModel>/AppObject/DTArtifactsGdrive}"
-					visible="{ViewModel>/designVisible}" tooltip="{ViewModel>/AppObject/DTArtifactsGdrive}"/>
-				<Button icon="sap-icon://detail-view" press="onLoadTargetURL" visible="{ViewModel>/designVisible}"
+					visible="{ViewModel>/designVisible}" tooltip="{ViewModel>/AppObject/DTArtifactsGdrive}">
+					<layoutData>
+						<l:GridData span="XL2 L4 M5 S7"/>
+					</layoutData>
+				</Input>
+				<!-- <Button icon="sap-icon://detail-view" press="onLoadTargetURL" visible="{ViewModel>/designVisible}"
 					enabled="{= ${ViewModel>/AppObject/DTArtifactsGdrive} ? true : false}"
 					tooltip="{ViewModel>/AppObject/DTArtifactsGdrive}">
 					<layoutData>
-						<l:GridData span="XL1 L1 M4 S6" />
+						<l:GridData span="XL1 L1 M1 S2" />
 					</layoutData>
 					<customData>
 						<core:CustomData value="{ViewModel>/AppObject/DTArtifactsGdrive}"/>
 					</customData>
-				</Button>
+				</Button> -->
+				<core:Icon
+					src="sap-icon://detail-view"
+					class="size3 sapUiTinyMarginTop"
+					color="#8875E7" press="onLoadTargetURL" visible="{ViewModel>/designVisible}"
+					tooltip="{ViewModel>/AppObject/DTArtifactsGdrive}">
+					<core:layoutData>
+						<FlexItemData growFactor="1" />
+					</core:layoutData>
+					<core:customData>
+						<core:CustomData value="{ViewModel>/AppObject/DTArtifactsGdrive}"/>
+					</core:customData>
+				</core:Icon>
 				<Label text="{i18n>prototype_link}"/>
 				<Input value="{ViewModel>/AppObject/PrototypeLink}" visible="{ViewModel>/designVisible}"
-					tooltip="{ViewModel>/AppObject/PrototypeLink}"/>
-				<Button icon="sap-icon://detail-view" press="onLoadTargetURL" visible="{ViewModel>/designVisible}"
+					tooltip="{ViewModel>/AppObject/PrototypeLink}">
+					<layoutData>
+						<l:GridData span="XL2 L4 M5 S7"/>
+					</layoutData>
+				</Input>
+				<!-- <Button icon="sap-icon://detail-view" press="onLoadTargetURL" visible="{ViewModel>/designVisible}"
 					 enabled="{= ${ViewModel>/AppObject/PrototypeLink} ? true : false}"
 					 tooltip="{ViewModel>/AppObject/PrototypeLink}">
 					<layoutData>
@@ -46,7 +66,19 @@
 					<customData>
 						<core:CustomData value="{ViewModel>/AppObject/PrototypeLink}"/>
 					</customData>
-				</Button>
+				</Button> -->
+				<core:Icon
+					src="sap-icon://detail-view"
+					class="size3 sapUiTinyMarginTop"
+					color="#8875E7" press="onLoadTargetURL" visible="{ViewModel>/designVisible}"
+					tooltip="{ViewModel>/AppObject/PrototypeLink}">
+					<core:layoutData>
+						<FlexItemData growFactor="1" />
+					</core:layoutData>
+					<core:customData>
+						<core:CustomData value="{ViewModel>/AppObject/PrototypeLink}"/>
+					</core:customData>
+				</core:Icon>
 			</f:content>
 		</f:SimpleForm>
 	</VBox>

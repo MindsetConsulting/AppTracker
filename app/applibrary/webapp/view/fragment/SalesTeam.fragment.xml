@@ -22,8 +22,12 @@
 					<core:Item key="{ViewModel>email}" text="{ViewModel>email}"/>
 				</MultiComboBox>
 				<Label text="{i18n>sow_link}"/>
-				<Input value="{ViewModel>/AppObject/SOWLink}" tooltip="{ViewModel>/AppObject/SOWLink}"/>	
-				<Button icon="sap-icon://detail-view" press="onLoadTargetURL"
+				<Input value="{ViewModel>/AppObject/SOWLink}" tooltip="{ViewModel>/AppObject/SOWLink}">
+					<layoutData>
+						<l:GridData span="XL2 L4 M5 S7"/>
+					</layoutData>
+				</Input>	
+				<!-- <Button icon="sap-icon://detail-view" press="onLoadTargetURL"
 					 enabled="{= ${ViewModel>/AppObject/SOWLink} ? true : false}"
 					 tooltip="{ViewModel>/AppObject/SOWLink}">
 					<layoutData>
@@ -32,7 +36,19 @@
 					<customData>
 						<core:CustomData value="{ViewModel>/AppObject/SOWLink}"/>
 					</customData>
-				</Button>
+				</Button> -->
+				<core:Icon
+					src="sap-icon://detail-view"
+					class="size3 sapUiTinyMarginTop"
+					color="#8875E7" press="onLoadTargetURL" visible="{ViewModel>/designVisible}"
+					tooltip="{ViewModel>/AppObject/SOWLink}">
+					<core:layoutData>
+						<FlexItemData growFactor="1" />
+					</core:layoutData>
+					<core:customData>
+						<core:CustomData value="{ViewModel>/AppObject/SOWLink}"/>
+					</core:customData>
+				</core:Icon>
 				<!-- <Link text = "Click here"
 					target="_blank"
 					href="http://www.sap.com">
