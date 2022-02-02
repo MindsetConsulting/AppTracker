@@ -1,28 +1,28 @@
 <core:FragmentDefinition xmlns="sap.m" xmlns:commons="sap.suite.ui.commons" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core">
-	<VBox class="sapUiSmallMargin">
+	<!-- <VBox class="sapUiSmallMargin"> -->
+	<FeedInput
+		post="onPostComments"
+		icon="sap-icon://customer"
+		class="sapUiSmallMarginTopBottom" />
     <commons:Timeline
-			id="idTimeline"
 			enableDoubleSided="true"
 			groupBy="HireDate"
 			growingThreshold="0"
-			filterTitle="Job Title"
+			filterTitle="User Name"
 			sortOldestFirst="true"
-			content="{ViewModel>/AppObject/appClients}">
+			content="{ViewModel>/AppObject/appActivities}">
 		<commons:content>
 			<commons:TimelineItem visible ="{= ${ViewModel>delete} ? false : true}"
-					id="idTemplateItem"
-					dateTime="01 Jan 2021"
-					title="{ViewModel>ClientName}"
+					dateTime="{ViewModel>date_time}"
+					title=""
 					userNameClickable="true"
-					userNameClicked="onUserNameClick"
-					select="onPressItems"
 					userPicture="sap-icon://customer"
-					text="{ViewModel>Feedback}"
-					userName="{ViewModel>ClientName}"
-					filterValue="{ViewModel>EndUsers}"
+					text="{ViewModel>comments}"
+					userName="{ViewModel>user}"
+					filterValue="{ViewModel>user}"
 					icon="sap-icon://activity-individual">
 			</commons:TimelineItem>
 		</commons:content>
 	</commons:Timeline>
-    </VBox>
+    <!-- </VBox> -->
 </core:FragmentDefinition>

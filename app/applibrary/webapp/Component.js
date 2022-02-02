@@ -21,6 +21,17 @@ function (UIComponent, Device, models) {
             // call the base component's init function
             UIComponent.prototype.init.apply(this, arguments);
             oViewModel = component.getModel("ViewModel");
+
+            //Need to check 
+            if (parent.sap.ushell && parent.sap.ushell.Container) {
+				oViewModel.login_user = parent.sap.ushell.Container.getUser().getId().toUpperCase();
+				oViewModel.login_userFullName = parent.sap.ushell.Container.getUser().getFullName();	
+                oViewModel.login_userCommentDataTime =  new Date().toLocaleString();			
+			} else {
+                oViewModel.login_user = "DEFAULT USER";
+			    oViewModel.login_userFullName = "DEFAULT USER";
+                oViewModel.login_userCommentDataTime =  new Date().toLocaleString();
+            }
             
             // Get the list pages data from capm cloud
             $.ajax({

@@ -194,18 +194,21 @@ sap.ui.define([
 			oViewModel.setProperty("/visible_payload/Industry/valueState", "None");
 			oViewModel.setProperty("/visible_payload/TechTags/valueState", "None");
 			//TBD
-			if(this.sAppId && this.sAppId !== 'create'){
+			if(controller.sAppId && controller.sAppId !== 'create'){
 				//TBD
 				$.ajax({
 					method: "GET",
-					url: "/Applibrary/MindsetTeam("+this.sAppId+")?$expand=appClients",
+					url: "/Applibrary/MindsetTeam("+controller.sAppId+")?$expand=appClients",
 					dataType: "json",
 					async: true,
 					success: function(data){
 						oViewModel.setProperty("/AppObject", data);
 						controller.onNavBackData = oViewModel.getProperty("/AppCategories");
 						controller.onSelectRadio();
+						//TBD
+						controller.onGetCommentData(controller.sAppId);
 						oViewModel.updateBindings(true);
+						
 					},
 					error: function(err){
 					}
@@ -255,6 +258,7 @@ sap.ui.define([
 					oViewModel.setProperty("/visible_payload/Industry/valueState", "None");
 				}
 				delete object.appClients;
+				delete object.appActivities;
 			if(bVisibilityCheck){
 				$.ajax({
 					method: "POST",
@@ -331,6 +335,7 @@ sap.ui.define([
 				// TBD
 				var appClientsCopy = jQuery.extend(true, [], oAppObject.appClients);
 				delete oAppObject.appClients;
+				delete oAppObject.appActivities;
 
 				$.ajax({
 					method: "PATCH",
@@ -341,6 +346,7 @@ sap.ui.define([
 						//TBD
 						// controller.onUpdateClients(appClients);
 						controller.onGetClients(controller.sAppId, 'save');
+						controller.onGetCommentData(controller.sAppId);
 						// oViewModel.setProperty("/buttonChecks/next", false);
 						// oViewModel.setProperty("/buttonChecks/save", true);
 						oViewModel.updateBindings(false);
@@ -426,12 +432,65 @@ sap.ui.define([
 			}
 		},
 		/**
+		 * 
+		 * @param {*} sAppId 
+		 * @param {*} oAppdata 
+		 */
+		 onGetCommentData: function(sAppId, sData){
+			if(sAppId){
+				$.ajax({
+					method: "GET",
+					url: "/Applibrary/MindsetTeam("+sAppId+")?$expand=appActivities",
+					contentType: "application/json",
+					async: true,
+					success: function(data){
+						oViewModel.setProperty("/AppObject/appActivities", data.appActivities);
+					},
+					error: function(err){
+						console.log("Error");
+					}
+				});
+			}
+		},
+		/**
+		 * 
+		 * @param {*} oEvent 
+		 */
+		onPostComments: function(oEvent){
+			var oSrc = oEvent.getSource() ? oEvent.getSource().getValue() : null;
+			var sValue = oSrc ? oSrc : oEvent.getParameter("value");
+			var object = {
+				app_id_id : controller.sAppId,
+				user: oViewModel.login_user,
+				date_time: oViewModel.login_userCommentDataTime,
+				comments: sValue
+			};
+			if(controller.sAppId){
+				$.ajax({
+					method: "POST",
+					url: "/Applibrary/CommentsActivities",
+					contentType: "application/json",
+					async: true,
+					success: function(data){
+						//TBD
+						controller.onGetCommentData(controller.sAppId);
+						oViewModel.updateBindings(false);
+					},
+					error: function(err){
+						console.log("Error inset data into cloud");
+					},
+					data: JSON.stringify(object)
+				});
+			}
+		},
+		/**
 		 * Check
 		 */
 		_onSuccess : function(){
 			var oModel = controller.getView().getModel("ViewModel");
 			var oAppObject = oModel.getProperty("/AppObject");
 			delete  oAppObject.appClients;
+			delete  oAppObject.appActivities;
 			var oDataModel = this.getView().getModel();
 			oDataModel.update("/MindsetTeam("+controller.sAppId+")",oAppObject,{
 				success: function(odata, res) {

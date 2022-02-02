@@ -4,6 +4,7 @@ service AppCategories @(path : '/Applibrary') {
     entity AppCategories as projection on myservice.AppCategories;
     entity MindsetTeam as projection on myservice.MindsetTeam;
     entity Clients as projection on myservice.Clients;  
+    entity CommentsActivities as projection on myservice.Activities;
 }
 service MyTeamsDataService @(path : '/ApplibraryTeams') {
 // TeamsData
