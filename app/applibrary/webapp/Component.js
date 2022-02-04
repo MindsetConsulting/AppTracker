@@ -132,8 +132,8 @@ function (UIComponent, Device, models) {
          * @override
          */
         destroy : function () {
-            this.oListSelector.destroy();
-            this._oErrorHandler.destroy();
+            if(this.oListSelector) {this.oListSelector.destroy();}
+            if(this._oErrorHandler) {this._oErrorHandler.destroy();}
             // call the base component's destroy function
             UIComponent.prototype.destroy.apply(this, arguments);
         },
