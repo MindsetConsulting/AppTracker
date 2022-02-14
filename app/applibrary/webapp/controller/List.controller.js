@@ -140,12 +140,13 @@ sap.ui.define([
                 // mainModel.setProperty("/AppObject", {});
                 var oPayload = {
                         "categoryname" : catName,
-                        "category_type": catType
+                        "category_type": catType,
+                        "delete": false
                 };
                 // POst the list pages data from capm cloud
                 $.ajax({
                     method: "POST",
-                    url: "/Applibrary/AppCategories",
+                    url: "/api/v1/Applibrary/AppCategories",
                     contentType: "application/json",
                     async: true,
                     success: function(oData){
@@ -182,7 +183,7 @@ sap.ui.define([
                 // POst the list pages data from capm cloud
                 $.ajax({
                     method: "PATCH",
-                    url: "/Applibrary/AppCategories/" + oCatObj.cat_id,
+                    url: "/api/v1/Applibrary/AppCategories/" + oCatObj.cat_id,
                     contentType: "application/json",
                     async: true,
                     success: function(oData){
@@ -227,7 +228,7 @@ sap.ui.define([
                 // };
                 $.ajax({
                     method: "POST",
-                    url: "/ApplibraryTeams/TeamsData",
+                    url: "/api/v1/ApplibraryTeams/TeamsData",
                     contentType: "application/json",
                     async: true,
                     success: function(data){
@@ -263,7 +264,7 @@ sap.ui.define([
                 var oViewModel = this.getView().getModel("ViewModel");
                 $.ajax({
                     method: "GET",
-                    url: "/Applibrary/AppCategories",
+                    url: "/api/v1/Applibrary/AppCategories?$filter=delete ne true",
                     dataType: "json",
                     async: true,
                     success: function(oData){
@@ -389,7 +390,7 @@ sap.ui.define([
                                 delete oSelectedObj.sCategory_type;
                                 $.ajax({
                                     method: "PATCH",
-                                    url: "/Applibrary/AppCategories/" + oSelectedObj.cat_id,
+                                    url: "/api/v1/Applibrary/AppCategories/" + oSelectedObj.cat_id,
                                     contentType: "application/json",
                                     async: true,
                                     success: function(data){

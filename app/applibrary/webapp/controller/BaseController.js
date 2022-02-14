@@ -116,9 +116,11 @@ sap.ui.define([
         getTeamsDetails: function(){
             var controller = this;
             var oViewModel = controller.getView().getModel("ViewModel");
+            // var url = "https://mindset-consulting--llc-mindsetbtpdev-btp-dev-empsocial548597ec.cfapps.us10.hana.ondemand.com/";
+            // url: url + "srv/EmployeeService/EmployeeHeaderSet",
             $.ajax({
                 method: "GET",
-                url: "/ApplibraryTeams/TeamsData",
+                url: "/api/v1/ApplibraryTeams/TeamsData",
                 dataType: "json",
                 async: true,
                 success: function(oData){
@@ -145,7 +147,7 @@ sap.ui.define([
                         oCat = element;
                         $.ajax({
                             method: "GET",
-                            url: "/Applibrary/AppCategories(" + element.cat_id + ")?$expand=cat_details",
+                            url: "/api/v1/Applibrary/AppCategories(" + element.cat_id + ")?$expand=cat_details&$select=cat_details",
                             dataType: "json",
                             async: false,
                             success: function(data){

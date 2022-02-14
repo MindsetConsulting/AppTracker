@@ -53,7 +53,7 @@ sap.ui.define([
             var mainModel = this.getView().getModel("ViewModel");
             $.ajax({
                 method: "GET",
-                url: "/Applibrary/AppCategories(" +this.sObjectId+ ")?$expand=cat_details",
+                url: "/api/v1/Applibrary/AppCategories(" +this.sObjectId+ ")?$expand=cat_details",
                 dataType: "json",
                 async: true,
                 success: function(data){
@@ -120,7 +120,7 @@ sap.ui.define([
                         controller.deleteDetailDialog.close();
                         $.ajax({
                             method: "PATCH",
-                            url: "/Applibrary/MindsetTeam/"+object.id,
+                            url: "/api/v1/Applibrary/MindsetTeam/"+object.id,
                             contentType: "application/json",
                             async: true,
                             success: function(data){

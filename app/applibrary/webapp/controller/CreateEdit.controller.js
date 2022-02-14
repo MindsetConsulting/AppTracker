@@ -198,7 +198,7 @@ sap.ui.define([
 				//TBD
 				$.ajax({
 					method: "GET",
-					url: "/Applibrary/MindsetTeam("+controller.sAppId+")?$expand=appClients",
+					url: "/api/v1/Applibrary/MindsetTeam("+controller.sAppId+")?$expand=appClients",
 					dataType: "json",
 					async: true,
 					success: function(data){
@@ -339,7 +339,7 @@ sap.ui.define([
 
 				$.ajax({
 					method: "PATCH",
-					url: "/Applibrary/MindsetTeam/" + oAppObject.id,
+					url: "/api/v1/Applibrary/MindsetTeam/" + oAppObject.id,
 					contentType: "application/json",
 					async: true,
 					success: function(data){
@@ -407,7 +407,7 @@ sap.ui.define([
 			if(sAppId){
 				$.ajax({
 					method: "GET",
-					url: "/Applibrary/MindsetTeam("+sAppId+")?$expand=appClients",
+					url: "/api/v1/Applibrary/MindsetTeam("+sAppId+")?$expand=appClients",
 					contentType: "application/json",
 					async: true,
 					success: function(data){
@@ -440,7 +440,7 @@ sap.ui.define([
 			if(sAppId){
 				$.ajax({
 					method: "GET",
-					url: "/Applibrary/MindsetTeam("+sAppId+")?$expand=appActivities",
+					url: "/api/v1/Applibrary/MindsetTeam("+sAppId+")?$expand=appActivities&$select=appActivities",
 					contentType: "application/json",
 					async: true,
 					success: function(data){
@@ -468,7 +468,7 @@ sap.ui.define([
 			if(controller.sAppId){
 				$.ajax({
 					method: "POST",
-					url: "/Applibrary/CommentsActivities",
+					url: "/api/v1/Applibrary/CommentsActivities",
 					contentType: "application/json",
 					async: true,
 					success: function(data){
@@ -536,7 +536,7 @@ sap.ui.define([
 			if(!addclientflage){
 				$.ajax({
 					method: "POST",
-					url: "/Applibrary/Clients",
+					url: "/api/v1/Applibrary/Clients",
 					contentType: "application/json",
 					async: true,
 					success: function(data){
@@ -599,7 +599,7 @@ sap.ui.define([
 				oObj.NPS = parseInt(oObj.NPS, 0);
 				$.ajax({
 					method: "PATCH",
-					url: "/Applibrary/Clients/" + oObj.ClientId,
+					url: "/api/v1/Applibrary/Clients/" + oObj.ClientId,
 					contentType: "application/json",
 					async: true,
 					success: function(data){
@@ -655,7 +655,7 @@ sap.ui.define([
 			oObj.delete = true;
 			$.ajax({
 				method: "PATCH",
-				url: "/Applibrary/Clients/" + oObj.ClientId,
+				url: "/api/v1/Applibrary/Clients/" + oObj.ClientId,
 				contentType: "application/json",
 				async: true,
 				success: function(data){

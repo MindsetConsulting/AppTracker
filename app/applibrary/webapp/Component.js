@@ -36,7 +36,7 @@ function (UIComponent, Device, models) {
             // Get the list pages data from capm cloud
             $.ajax({
                 method: "GET",
-                url: "/Applibrary/AppCategories",
+                url: "/api/v1/Applibrary/AppCategories?$filter=delete ne true",
                 dataType: "json",
                 async: true,
                 success: function(oData){
@@ -52,7 +52,7 @@ function (UIComponent, Device, models) {
                                 oCat = element;
                                 $.ajax({
                                     method: "GET",
-                                    url: "/Applibrary/AppCategories(" + element.cat_id + ")?$expand=cat_details",
+                                    url: "/api/v1/Applibrary/AppCategories(" + element.cat_id + ")?$expand=cat_details&$select=cat_details",
                                     dataType: "json",
                                     async: false,
                                     success: function(data){
@@ -91,40 +91,43 @@ function (UIComponent, Device, models) {
             // set the device model
             this.setModel(models.createDeviceModel(), "device");
         },
-        onLoadCount: function(oData){
-            if(oData && oData.length > 0){
-                let oCat = {};
-                    oCat.pers = [];
-                oData.forEach(element => {
-                    if(element && !element.delete){
-                        oCat = element;
-                        $.ajax({
-                            method: "GET",
-                            url: "/Applibrary/AppCategories(" + element.cat_id + ")?$expand=cat_details",
-                            dataType: "json",
-                            async: true,
-                            success: function(data){
-                                let aArr = [];
-                                data.cat_details.forEach(element => {
-                                    if(element.delete !== true){
-                                        aArr.push(element);
-                                    }
-                                });
-                                oCat.count = data.aArr.length;
+        //TBD
+        // onLoadCount: function(oData){
+        //     if(oData && oData.length > 0){
+        //         let oCat = {};
+        //             oCat.pers = [];
+        //         oData.forEach(element => {
+        //             if(element && !element.delete){
+        //                 oCat = element;
+        //                 $.ajax({
+        //                     method: "GET",
+        //                     url: "/api/v1/Applibrary/AppCategories(" + element.cat_id + ")?$expand=cat_details",
+        //                     dataType: "json",
+        //                     async: true,
+        //                     success: function(data){
+        //                         let aArr = [];
+        //                         data.cat_details.forEach(element => {
+        //                             if(element.delete !== true){
+        //                                 aArr.push(element);
+        //                             }
+        //                         });
+        //                         oCat.count = data.aArr.length;
 
-                                data.cat_details.forEach(element1 => {
-                                    if(element1 && element1.Status && element1.Status === "Completed"){
-                                        oCat.pers.push(element1.Status); 
-                                    }
-                                });
-                            },
-                            error: function(err){
-                            }
-                        });
-                    }                    
-                });
-            }
-        },
+        //                         data.cat_details.forEach(element1 => {
+        //                             if(element1 && element1.Status && element1.Status === "Completed"){
+        //                                 oCat.pers.push(element1.Status); 
+        //                             }
+        //                         });
+        //                     },
+        //                     error: function(err){
+        //                     }
+        //                 });
+        //             }                    
+        //         });
+        //     }
+        // },
+
+
         /**
          * The component is destroyed by UI5 automatically.
          * In this method, the ListSelector and ErrorHandler are destroyed.
